@@ -1,0 +1,14 @@
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/bin/Debug/net8.0/Simulator
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/bin/Debug/net8.0/Simulator.deps.json
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/bin/Debug/net8.0/Simulator.runtimeconfig.json
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/bin/Debug/net8.0/Simulator.dll
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/bin/Debug/net8.0/Simulator.pdb
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.AssemblyInfoInputs.cache
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.AssemblyInfo.cs
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.csproj.CoreCompileInputs.cache
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.dll
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/refint/Simulator.dll
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.pdb
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.genruntimeconfig.cache
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/ref/Simulator.dll

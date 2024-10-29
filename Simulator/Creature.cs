@@ -10,13 +10,8 @@ class Creature
         get => name;
         set
         {
-            if (value != "Unknown")
-            {
-                Console.WriteLine("Nazwę można nadać tylko raz przy inicjacji");
-            }
-            
             value = value.Trim();
-            
+
             if (value.Length < 3)
             {
                 value = value.PadRight(3, '#');
@@ -30,18 +25,16 @@ class Creature
                     value = value.PadRight(3, '#');
                 }
             }
-            
+
             if (char.IsLower(value[0]))
             {
-                   value = char.ToUpper(value[0])+value.Substring(1);
+                value = char.ToUpper(value[0]) + value.Substring(1);
             }
 
             name = value;
         }
-        
-        
     }
-    
+
     public int Level
     {
         get => level;
@@ -55,22 +48,22 @@ class Creature
             {
                 value = 10;
             }
-            
+
             level = value;
         }
     }
+
     public Creature(string name = "Unknown", int level = 1)
     {
         Name = name;
         Level = level;
     }
 
-   
     public string Info => $"value: {Name}, Level: {Level}";
-    
+
     public void SayHi()
     {
-      Console.WriteLine($"Hi, I'm {Name} and I'm at level {Level}.");
+        Console.WriteLine($"Hi, I'm {Name} and I'm at level {Level}.");
     }
 
     public void Upgrade()
@@ -81,6 +74,22 @@ class Creature
         }
     }
 
+    public void Go(Directions.Direction direction)
+    {
+        Console.WriteLine($"{Name} goes {direction.ToString().ToLower()}.");
+    }
 
+    public void Go(Directions.Direction[] directions)
+    {
+        foreach (var direction in directions)
+        {
+            Go(direction);
+        }
+    }
+
+    public void Go(string directions)
+    {
+        var parsedDirections = DirectionParser.Parse(directions);
+        Go(parsedDirections);
+    }
 }
-

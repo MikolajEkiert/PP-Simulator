@@ -1,6 +1,6 @@
 namespace Simulator;
 
-class Directions
+public class Directions
 {
    public enum Direction
    {

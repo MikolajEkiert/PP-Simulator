@@ -36,9 +36,30 @@ class Program
         a = new() { Description = "Mice           are great", Size = 40 };
         Console.WriteLine(a.Info);
     }
+    static void Lab3b()
+    {
+        Creature c = new("Shrek", 7);
+        c.SayHi();
+
+        Console.WriteLine("\n* Up");
+        c.Go(Directions.Direction.Up);
+
+        Console.WriteLine("\n* Right, Left, Left, Down");
+        Directions.Direction[] directions = {
+            Directions.Direction.Right, Directions.Direction.Left, Directions.Direction.Left, Directions.Direction.Down
+        };
+        c.Go(directions);
+
+        Console.WriteLine("\n* LRL");
+        c.Go("LRL");
+
+        Console.WriteLine("\n* xxxdR lyyLTyu");
+        c.Go("xxxdR lyyLTyu");
+    }
+
     static void Main(string[] args)
     {
         Console.WriteLine("Starting Simulator!\n");
-        Lab3a();
+        Lab3b();
     }
 }
