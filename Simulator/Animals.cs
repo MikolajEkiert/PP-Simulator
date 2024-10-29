@@ -7,4 +7,6 @@ public class Animals
     public uint Size { get; set; } = 3;
     
     public string Info => $"Description: {Description}, <{Size}>";
+    
+    
 }
