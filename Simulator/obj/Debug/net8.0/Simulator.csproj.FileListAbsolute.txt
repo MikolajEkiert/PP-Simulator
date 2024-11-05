@@ -12,3 +12,4 @@
 /Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.pdb
 /Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.genruntimeconfig.cache
 /Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/ref/Simulator.dll
+/Users/mikolajekiert/Desktop/PP3/Simulator/Simulator/obj/Debug/net8.0/Simulator.sourcelink.json
