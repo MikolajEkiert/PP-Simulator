@@ -1,94 +1,113 @@
-namespace Simulator;
 
-public abstract class Creature
+
+namespace Simulator
 {
-    private string name;
-    private int level;
-
-    public string Name
+    public abstract class Creature
     {
-        get => name;
-        set
+        private string name="Unknown";
+        public string Name
         {
-            value = value.Trim();
-
-            if (value.Length < 3)
+            get { return name; }
+            init
             {
-                value = value.PadRight(3, '#');
-            }
-
-            if (value.Length > 25)
-            {
-                value = value.Substring(0, 25).TrimEnd();
-                if (value.Length < 3)
+                var trimmed = value.Trim();
+                if (trimmed.Length < 3)
                 {
-                    value = value.PadRight(3, '#');
+                    trimmed = trimmed.PadRight(3, '#');
                 }
-            }
+                else if (trimmed.Length > 25)
+                {
+                    trimmed = trimmed.Substring(0, 25);
+                }
+                if (!char.IsUpper(trimmed[0]))
+                {
+                    trimmed = char.ToUpper(trimmed[0]) + trimmed.Substring(1); 
+                }
+                trimmed = trimmed.Trim();
+                if (trimmed.Length < 3)
+                {
+                    trimmed = trimmed.PadRight(3, '#');
+                }
 
-            if (char.IsLower(value[0]))
-            {
-                value = char.ToUpper(value[0]) + value.Substring(1);
-            }
 
-            name = value;
+                name = trimmed;
+
+            }
         }
-    }
 
-    public int Level
-    {
-        get => level;
-        set
+        private int level=1;
+        public int Level
         {
-            if (value < 1)
+            get { return level; }
+            init
             {
-                value = 1;
+                if (value < 1)
+                {
+                    value = 1;
+                }
+                else if (value > 10)
+                {
+                    value = 10;
+                }
+                level = value;
             }
-            else if (value > 10)
+        }
+
+        public Creature(string name, int level = 1)
+        {
+            Name = name;
+            Level = level;
+
+        }
+        public Creature() { }
+        public abstract void SayHi();
+       
+        public void Upgrade()
+        {
+            if (Level < 10)
             {
-                value = 10;
+                level++;
             }
-
-            level = value;
         }
-    }
-
-    public abstract int Power { get; }
-
-    public Creature(string name = "Unknown", int level = 1)
-    {
-        Name = name;
-        Level = level;
-    }
-
-    public string Info => $"value: {Name}, Level: {Level}";
-
-    public abstract void SayHi();
-
-    public void Upgrade()
-    {
-        if (level <= 9)
+        public void Go(Directions directions)
         {
-            level++;
+            switch (directions)
+            {
+                case Directions.Up:
+                    Console.WriteLine($"{Name} goes up");
+                    break;
+                case Directions.Right:
+                    Console.WriteLine($"{Name} goes right");
+                    break;
+                case Directions.Down:
+                    Console.WriteLine($"{Name} goes down");
+                    break;
+                case Directions.Left:
+                    Console.WriteLine($"{Name} goes left");
+                    break;
+
+
+            }
         }
-    }
-
-    public void Go(Directions.Direction direction)
-    {
-        Console.WriteLine($"{Name} goes {direction.ToString().ToLower()}.");
-    }
-
-    public void Go(Directions.Direction[] directions)
-    {
-        foreach (var direction in directions)
+        public void Go(Directions[] directions)
         {
-            Go(direction);
+            foreach (Directions direction in directions)
+            {
+                Go(direction);
+            }
         }
-    }
 
-    public void Go(string directions)
-    {
-        var parsedDirections = DirectionParser.Parse(directions);
-        Go(parsedDirections);
+        public void Go(string directionsString)
+        {
+            Directions[] directions = DirectionParser.Parse(directionsString);
+            Go(directions);
+        }
+
+
+        public string Info
+        {
+            get { return $"{Name} [{Level}]"; }
+        }
+        public abstract int Power { get; }
     }
 }

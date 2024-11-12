@@ -1,46 +1,49 @@
-namespace Simulator;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Orc : Creature
+namespace Simulator
 {
-    // Properties
-    private int rage = 1;
-    public int Rage
+    internal class Orc : Creature
     {
-        get => rage;
-        init
+
+        private int rage=1;
+        private int counter = 0;
+        public int Rage
         {
-            if (value < 0)
-            {
-                value = 0;
+            get { return rage; }
+            init {
+                rage=Validator.Limiter(value, 0, 10);
             }
-            if (value > 10)
-            {
-                value = 10;
-            }
-
-            rage = value;
         }
-    }
 
-    private int huntCounter = 0;
-
-    public override int Power => 7 * Level + 3 * Rage;
-
-
-    public Orc(string name, int level = 1, int rage = 1) : base(name, level)
-    {
-        Rage = rage;
-    }
-
-    public Orc() { }
-    public override void SayHi() => Console.WriteLine($"Hi, I'm {Name}, my level is {Level}, my rage is {Rage}.");
-    public void Hunt()
-    {
-        Console.WriteLine($"{Name} is hunting.");
-        huntCounter++;
-        if (huntCounter % 2 == 0 & rage < 10)
+        public void Hunt() {
+            counter++;
+            Console.WriteLine($"{Name}is hunting.");
+            if (counter % 2 == 0)
+            {
+                if (rage < 10) rage++;
+            }
+        }
+        public Orc() { }
+        public Orc(string name, int level=1, int rage=1) : base(name, level)
         {
-            rage++;
+            Rage = rage;
         }
+        public override void SayHi() {
+            
+            Console.WriteLine($"Hi, I'm {Name}, my level is {Level}, my rage is {Rage}");
+           
+        }
+        public virtual string Info
+        {
+            get{ return $"{Name} [{Level}][{Rage}]"; }
+        }
+        public override int Power => 7 * Level + 3 * Rage;
+
+
+
     }
 }
