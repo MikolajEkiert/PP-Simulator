@@ -2,7 +2,7 @@ namespace Simulator
 {
 
         
-    public enum Directions
+    public enum Direction
     {
         Up, Right, Down, Left,
     }

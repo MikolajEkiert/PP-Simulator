@@ -69,29 +69,29 @@ namespace Simulator
                 level++;
             }
         }
-        public void Go(Directions directions)
+        public void Go(Direction direction)
         {
-            switch (directions)
+            switch (direction)
             {
-                case Directions.Up:
+                case Direction.Up:
                     Console.WriteLine($"{Name} goes up");
                     break;
-                case Directions.Right:
+                case Direction.Right:
                     Console.WriteLine($"{Name} goes right");
                     break;
-                case Directions.Down:
+                case Direction.Down:
                     Console.WriteLine($"{Name} goes down");
                     break;
-                case Directions.Left:
+                case Direction.Left:
                     Console.WriteLine($"{Name} goes left");
                     break;
 
 
             }
         }
-        public void Go(Directions[] directions)
+        public void Go(Direction[] directions)
         {
-            foreach (Directions direction in directions)
+            foreach (Direction direction in directions)
             {
                 Go(direction);
             }
@@ -99,7 +99,7 @@ namespace Simulator
 
         public void Go(string directionsString)
         {
-            Directions[] directions = DirectionParser.Parse(directionsString);
+            Direction[] directions = DirectionParser.Parse(directionsString);
             Go(directions);
         }
 

@@ -52,8 +52,9 @@ namespace Simulator
         static void Main(string[] args)
         {
             Console.WriteLine("Starting Simulator! \n");
-            Lab4b();
-            Lab4a();
+            Point p = new(10, 25);
+            Console.WriteLine(p.Next(Direction.Right));          // (11, 25)
+            Console.WriteLine(p.NextDiagonal(Direction.Right)); 
 
 
         }

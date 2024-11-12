@@ -2,24 +2,24 @@ namespace Simulator
 {
     public static class DirectionParser
     {
-        public static Directions[] Parse(string input)
+        public static Direction[] Parse(string input)
         {
-            List<Directions> directions = new List<Directions>();
+            List<Direction> directions = new List<Direction>();
             foreach (char c in input.ToUpper())
             {
                 switch (c)
                 {
                     case 'U':
-                        directions.Add(Directions.Up);
+                        directions.Add(Direction.Up);
                         break;
                     case 'R':
-                        directions.Add(Directions.Right);
+                        directions.Add(Direction.Right);
                         break;
                     case 'D':
-                        directions.Add(Directions.Down);
+                        directions.Add(Direction.Down);
                         break;
                     case 'L':
-                        directions.Add(Directions.Left);
+                        directions.Add(Direction.Left);
                         break;
                     default:
 
