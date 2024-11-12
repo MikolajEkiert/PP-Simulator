@@ -7,10 +7,7 @@ public class Rectangle
         
         if (x1 > x2)
         {
-            //binary operations values swap
-            x1 = x1 ^ x2;
-            x2 = x1 ^ x2;
-            x1 = x1 ^ x2;
+            (x1, x2) = (x2, x1);
         }
         if (y1 > y2)
         {
@@ -31,5 +28,17 @@ public class Rectangle
     public int Y2 { get; }  
     
     public override string ToString() => $"({X1}, {Y1}):({X2}, {Y2})";
+    public Rectangle(Point p1, Point p2) : this(p1.X,p1.Y,p2.X,p2.Y)
+    {
+    }
+    public bool Contains (Point point)
+    {
+        if (point.X >= X1 && point.X <= X2 && point.Y >= Y1 && point.Y <= Y2)
+        {
+            return true;
+        } 
+        return false;
+    }
+
 }
 

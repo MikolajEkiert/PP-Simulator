@@ -26,9 +26,9 @@ public readonly struct Point
             {
                 return new Point(X + 1, Y);
             }
-                
+            default:
+                return default;       
         }
-        return this;
     }
 
     // rotate given direction 45 degrees clockwise
@@ -39,23 +39,23 @@ public readonly struct Point
             
             case Direction.Left:
             {
-                return new Point(X, Y+1);
+                return new Point(X-1, Y+1);
             }
             case Direction.Down:
             {
-                return new Point(X, Y-1);
+                return new Point(X-1, Y-1);
             }
             case Direction.Up:
             {
-                return new Point(X, Y+1);
+                return new Point(X+1, Y+1);
             }
             case Direction.Right:
             {
                 return new Point(X+1, Y-1);
             }
+            default:
+                return default;    
             
         }
-
-        return this;
     }
 }
