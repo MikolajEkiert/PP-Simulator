@@ -1,5 +1,7 @@
 
 
+using System.Runtime.InteropServices.JavaScript;
+
 namespace Simulator
 {
     public abstract class Creature
@@ -60,7 +62,7 @@ namespace Simulator
 
         }
         public Creature() { }
-        public abstract void SayHi();
+        public abstract string Greetings();
        
         public void Upgrade()
         {
@@ -69,39 +71,20 @@ namespace Simulator
                 level++;
             }
         }
-        public void Go(Direction direction)
+
+        public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
+        public string[] Go(Direction[] directions)
         {
-            switch (direction)
+            var result = new string[directions.Length];
+            for (int i = 0; i < directions.Length; i++)
             {
-                case Direction.Up:
-                    Console.WriteLine($"{Name} goes up");
-                    break;
-                case Direction.Right:
-                    Console.WriteLine($"{Name} goes right");
-                    break;
-                case Direction.Down:
-                    Console.WriteLine($"{Name} goes down");
-                    break;
-                case Direction.Left:
-                    Console.WriteLine($"{Name} goes left");
-                    break;
-
-
+                result[i] = Go(directions[i]);
             }
-        }
-        public void Go(Direction[] directions)
-        {
-            foreach (Direction direction in directions)
-            {
-                Go(direction);
-            }
+
+            return result;
         }
 
-        public void Go(string directionsString)
-        {
-            Direction[] directions = DirectionParser.Parse(directionsString);
-            Go(directions);
-        }
+        public string[] Go(string directionsString) => Go(DirectionParser.Parse(directionsString));
 
 
         public string Info
