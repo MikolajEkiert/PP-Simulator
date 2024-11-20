@@ -1,11 +1,17 @@
-
-
-using System.Runtime.InteropServices.JavaScript;
+using Simulator.Maps;
 
 namespace Simulator
 {
     public abstract class Creature
     {
+        public Map? Map { get; private set; }
+        public Point Position { get; private set; }
+
+        public void initMapAndPosition(Map map, Point position)
+        {
+            
+        }
+        
         private string name="Unknown";
         public string Name
         {
@@ -75,6 +81,8 @@ namespace Simulator
         public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
         public string[] Go(Direction[] directions)
         {
+            //Map.Next()==Position ? move : bez ruchu
+            //map.move()
             var result = new string[directions.Length];
             for (int i = 0; i < directions.Length; i++)
             {

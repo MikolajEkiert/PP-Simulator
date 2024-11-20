@@ -1,26 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Simulator;
 
 namespace Simulator.Maps;
 
-public class SmallSquareMap : Map
+public class SmallSquareMap : SmallMap
 {
     public readonly int Size;
-    public SmallSquareMap(int size)
+    public SmallSquareMap(int size) : base(size, size)
     {
-        if ((size < 5) || (size > 20))
-        {
-            throw new ArgumentOutOfRangeException("Rozmiar nie należy do przedziału [5,20]");
-        }
-        else
-        {
-            Size = size;
-        }
     }
     public override bool Exist(Point p)
     {

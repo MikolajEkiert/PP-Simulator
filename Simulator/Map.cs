@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Simulator.Maps;
 /// <summary>
@@ -10,12 +6,32 @@ namespace Simulator.Maps;
 /// </summary>
 public abstract class Map
 {
+    //add(creature,point)
+    //remove(creature,point)
+    //move()
+    //at(point) lub at(x,y)
+    
+    private readonly Rectangle r;
+
+    protected Map(int sizeX, int sizeY)
+    {
+        if (sizeX < 5 || sizeY < 5)
+        {
+            throw new ArgumentOutOfRangeException(nameof(sizeX), "Mapa jest zbyt mała");
+        }
+        SizeX = sizeX;
+        SizeY = sizeY;
+        r = new Rectangle(0, 0, sizeX-1, sizeY-1);
+    }
+    public int SizeX { get; }
+    public int SizeY { get; }
+
     /// <summary>
     /// Check if given point belongs to the map.
     /// </summary>
     /// <param name="p">Point to check.</param>
     /// <returns></returns>
-    public abstract bool Exist(Point p);
+    public virtual bool Exist(Point p) => r.Contains(p);
 
     /// <summary>
     /// Next position to the point in a given direction.
