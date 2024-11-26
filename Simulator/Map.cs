@@ -6,10 +6,7 @@ namespace Simulator.Maps;
 /// </summary>
 public abstract class Map
 {
-    //add(creature,point)
-    //remove(creature,point)
-    //move()
-    //at(point) lub at(x,y)
+
     
     private readonly Rectangle r;
     protected abstract List<Creature>?[,] Fields { get; }
@@ -75,11 +72,16 @@ public abstract class Map
         }
     }
     
-    public void Move(Creature c, Point point1, Point point2)
+    public void Move(Creature creature, Point position, Direction direction)
     {
-        Remove(c, point1);
-        Add(c, point2);
+        int x = position.X;
+        int y = position.Y;
+        var newPosition = Next(position, direction);
+        
+        Remove(creature, position);
+        Add(creature, newPosition);
     }
+
     
     public List<Creature> At(Point p)
     {

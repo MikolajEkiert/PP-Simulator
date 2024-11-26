@@ -78,16 +78,31 @@ namespace Simulator
             }
         }
 
-        public string[] Go(Direction directions)
+        public void Go(Direction directions)
+    {
+        if (Map != null)
         {
-            if (Map != null)
+            var nextPosition = Map.Next(Position, directions);
+            if (!Map.Exist(nextPosition))
             {
-                var nextPosition = Map.Next(Position, directions);
-                Map.Move(this, Position, nextPosition);
+                Console.WriteLine($"Invalid move. {this.Info} tried to move out of bounds.");
+                return;
+            }
+            try
+            {
+                Map.Move(this, Position, directions);
                 Position = nextPosition;
             }
-            return new string[] { "Moved" };
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to move {this.Info}: {ex.Message}");
+            }
         }
+        else
+        {
+            Console.WriteLine("Creature's map is not set. Cannot move.");
+        }
+    }
 
         public abstract int Power { get; }
 

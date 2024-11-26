@@ -76,8 +76,9 @@ public class Simulation
                 throw new ArgumentException($"Position {position} is outside the bounds of the map.");
             }
 
-            map.Add(creature, position); 
-           
+            creature.initMapAndPosition(map, position);
+
+            map.Add(creature, position);           
         }
 
     }
