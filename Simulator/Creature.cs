@@ -9,10 +9,11 @@ namespace Simulator
 
         public void initMapAndPosition(Map map, Point position)
         {
-            
+            Map = map;
+            Position = position;
         }
         
-        private string name="Unknown";
+        private string name = "Unknown";
         public string Name
         {
             get { return name; }
@@ -37,13 +38,11 @@ namespace Simulator
                     trimmed = trimmed.PadRight(3, '#');
                 }
 
-
                 name = trimmed;
-
             }
         }
 
-        private int level=1;
+        private int level = 1;
         public int Level
         {
             get { return level; }
@@ -65,9 +64,10 @@ namespace Simulator
         {
             Name = name;
             Level = level;
-
         }
+
         public Creature() { }
+
         public abstract string Greetings();
        
         public void Upgrade()
@@ -78,27 +78,24 @@ namespace Simulator
             }
         }
 
-        public string Go(Direction direction) => $"{direction.ToString().ToLower()}";
-        public string[] Go(Direction[] directions)
+        public string[] Go(Direction directions)
         {
-            //Map.Next()==Position ? move : bez ruchu
-            //map.move()
-            var result = new string[directions.Length];
-            for (int i = 0; i < directions.Length; i++)
+            if (Map != null)
             {
-                result[i] = Go(directions[i]);
+                var nextPosition = Map.Next(Position, directions);
+                Map.Move(this, Position, nextPosition);
+                Position = nextPosition;
             }
-
-            return result;
+            return new string[] { "Moved" };
         }
 
-        public string[] Go(string directionsString) => Go(DirectionParser.Parse(directionsString));
-
-
-        public string Info
-        {
-            get { return $"{Name} [{Level}]"; }
-        }
         public abstract int Power { get; }
+
+        public abstract string Info { get; }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name.ToUpper()}: {Info}";
+        }
     }
 }

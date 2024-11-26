@@ -2,16 +2,20 @@ namespace Simulator.Maps;
 
 public class SmallTorusMap : Map
 {
+    private List<Creature>?[,] fields;
+
     public SmallTorusMap(int sizeX, int sizeY) : base(sizeX, sizeY)
     {
-        
+        fields = new List<Creature>?[sizeX, sizeY];
     }
+
+    protected override List<Creature>?[,] Fields => fields;
+
     public override bool Exist(Point p)
     {
         try
         {
-            Rectangle r = new(0, 0, SizeX-1, SizeY-1);
-
+            Rectangle r = new(0, 0, SizeX - 1, SizeY - 1);
             return r.Contains(p);
         }
         catch (Exception)
@@ -54,5 +58,3 @@ public class SmallTorusMap : Map
         }
     }
 }
-
-
