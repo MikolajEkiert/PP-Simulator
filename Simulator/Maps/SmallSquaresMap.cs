@@ -1,4 +1,3 @@
-
 namespace Simulator.Maps;
 
 public class SmallSquareMap : SmallMap
@@ -9,7 +8,7 @@ public class SmallSquareMap : SmallMap
     }
     public override bool Exist(Point p)
     {
-        var R = new Rectangle(0,0, Size, Size);
+        var R = new Rectangle(0,0, Size-1, Size-1);
         return R.Contains(p);
     }
 

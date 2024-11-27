@@ -27,7 +27,7 @@ namespace Simulator
             Console.WriteLine("\nHANDLE EXCEPTION TEST\n");
             try
             {
-                var r5 = new Rectangle(1, 2, 1, 3);
+                var r5 = new Rectangle(1, 2, 5, 3);
             }
             catch (Exception ex)
             {

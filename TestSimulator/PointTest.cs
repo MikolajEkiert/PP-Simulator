@@ -22,8 +22,7 @@ public class PointTests
     [InlineData(Direction.Right, 1, 0)]
     [InlineData(Direction.Up, 0, 1)]
     [InlineData(Direction.Down, 0, -1)]
-    [InlineData(Direction.Left, -1, 0)]
-    [InlineData(Direction.Right, 1, 0)]
+
     public void MovePoint_MovesCorrectly(Direction direction, int expectedX, int expectedY)
     {
         var point = new Point(0, 0);
@@ -37,8 +36,7 @@ public class PointTests
     [InlineData(Direction.Right, 1, -1)]
     [InlineData(Direction.Up, 1, 1)]
     [InlineData(Direction.Down, -1, -1)]
-    [InlineData(Direction.Left, -1, 1)]
-    [InlineData(Direction.Right, 1, -1)]
+
     public void MovePointDiagonally_MovesCorrectly(Direction direction, int expectedX, int expectedY)
     {
         var point = new Point(0, 0);
