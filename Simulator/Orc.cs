@@ -3,7 +3,7 @@ namespace Simulator
     public class Orc : Creature
     {
         private int rage = 1;
-        private int counter;
+        private int counter = 0;
 
         public int Rage
         {

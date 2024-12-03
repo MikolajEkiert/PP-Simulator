@@ -9,7 +9,7 @@ namespace Simulator
             get { return description; }
             init
             {
-                description= Validator.Shortener(value, 3, 15, '#');
+                description = Validator.Shortener(value, 3, 15, '#');
             }
         }
 

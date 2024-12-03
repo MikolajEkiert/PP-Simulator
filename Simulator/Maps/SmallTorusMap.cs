@@ -2,14 +2,14 @@ namespace Simulator.Maps;
 
 public class SmallTorusMap : Map
 {
-    private List<Creature>?[,] fields;
+    private List<IMappable>?[,] fields;
 
     public SmallTorusMap(int sizeX, int sizeY) : base(sizeX, sizeY)
     {
-        fields = new List<Creature>?[sizeX, sizeY];
+        fields = new List<IMappable>?[sizeX, sizeY];
     }
 
-    protected override List<Creature>?[,] Fields => fields;
+    protected override List<IMappable>?[,] Fields => fields;
 
     public override bool Exist(Point p)
     {
