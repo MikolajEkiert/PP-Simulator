@@ -10,11 +10,11 @@ class Program
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
         SmallSquareMap map = new(5);
-        List<IMappable> creatures = new() { new Orc("Gorbag"), new Elf("Elandor") };
+        List<IMappable> mappables = new() { new Orc("Gorbag"), new Elf("Elandor") };
         List<Point> points = new() { new(2, 2), new(3, 1) };
         string moves = "dlrludl";
 
-        Simulation simulation = new(map, creatures, points, moves);
+        Simulation simulation = new(map, mappables, points, moves);
         MapVisualizer mapVisualizer = new(simulation.Map);
 
         while (!simulation.Finished)

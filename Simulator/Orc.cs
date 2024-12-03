@@ -36,6 +36,7 @@ namespace Simulator
         }
 
         public override int Power => 7 * Level + 3 * Rage;
+        public override char Symbol => 'O';
 
         public override string Info => $"Orc {Name}, Level: {Level}, Rage: {Rage}";
     }

@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Simulator
 {
     internal class Birds : Animals
@@ -11,14 +5,37 @@ namespace Simulator
         private bool canFly = true;
         public bool CanFly { get { return canFly; } init { value = canFly; } }
 
+        public override char Symbol => CanFly ? 'B' : 'b';
         public override string Info
         {
             get
             {
-                string flying_skill = canFly ? "fly+" : "fly-";
-                return $"{Description} {flying_skill} <{Size}>";
+                string flyAbility = CanFly ? "fly+" : "fly-";
+                return $"{Description} ({flyAbility}) <{Size}>";
             }
         }
-        
+        public Birds() { }
+        public Birds(string description = "Unknown Bird", int size = 3, bool canFly = true) : base(description, size)
+        {
+            CanFly = canFly;
+        }
+
+        public override void Go(Direction direction)
+        {
+            if (Map == null)
+            {
+                Console.WriteLine("Map is not set. The bird cannot move.");
+                return;
+            }
+            Point nextPosition = CanFly
+                ? Map.Next(Map.Next(Position, direction), direction)
+                : Map.NextDiagonal(Position, direction); 
+
+
+            Map.Move(this, Position, nextPosition);
+            Position = nextPosition;
+        }
+
     }
+    
 }

@@ -60,14 +60,14 @@ namespace Simulator
             }
         }
 
+        public Creature() { }
+
         public Creature(string name, int level = 1)
         {
             Name = name;
             Level = level;
         }
-
-        public Creature() { }
-
+        
         public abstract string Greetings();
        
         public void Upgrade()
@@ -91,6 +91,8 @@ namespace Simulator
         public abstract int Power { get; }
 
         public abstract string Info { get; }
+        
+        public abstract char Symbol { get; } 
 
         public override string ToString()
         {

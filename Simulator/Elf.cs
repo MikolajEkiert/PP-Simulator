@@ -36,6 +36,7 @@ namespace Simulator
         }
 
         public override int Power => 8 * Level + 2 * Agility;
+        public override char Symbol => 'E';
 
         public override string Info => $"Elf {Name}, Level: {Level}, Agility: {Agility}";
     }
