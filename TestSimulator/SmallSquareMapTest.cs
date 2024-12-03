@@ -15,7 +15,7 @@ namespace TestSimulator
         {
             int size = 10;
             var map = new SmallSquareMap(size);
-            Assert.Equal(size, map.Size);
+            Assert.Equal(size, map.SizeX);
 
         }
         [Theory]
@@ -30,7 +30,6 @@ namespace TestSimulator
         [InlineData(6,6,10, true)]
         [InlineData(6, 1, 5, false)]
         [InlineData(19, 19, 20, true)]
-        [InlineData(20, 20, 20, true)]
         public void ExistMethodTest(int x, int y, int size, bool expected)
         {
            

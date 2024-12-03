@@ -32,7 +32,7 @@ public class Animals : IMappable
             return;
 
         Point nextPosition = Map.Next(Position, direction);
-        Map.Move((IMappable)this, Position, nextPosition);
+        Map.Move(this, Position, nextPosition);
         Position = nextPosition;
     }
 

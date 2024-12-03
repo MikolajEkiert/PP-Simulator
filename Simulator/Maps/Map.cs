@@ -72,6 +72,10 @@ public abstract class Map
             throw new ArgumentOutOfRangeException(nameof(sizeX), "Szerokość mapy musi wynosić co najmniej 5.");
         if (sizeY < 5)
             throw new ArgumentOutOfRangeException(nameof(sizeY), "Długość mapy musi wynosić co najmniej 5.");
+        if (sizeX > 20)
+            throw new ArgumentOutOfRangeException(nameof(sizeX), "Szerokość mapy nie może przekraczać 20.");
+        if (sizeY > 20)
+            throw new ArgumentOutOfRangeException(nameof(sizeY), "Długość mapy nie może przekraczać 20.");
 
         SizeX = sizeX;
         SizeY = sizeY;

@@ -2,39 +2,19 @@ namespace Simulator.Maps;
 
 public class SmallSquareMap : SmallMap
 {
-    public readonly int Size;
     public SmallSquareMap(int size) : base(size, size)
     {
-    }
-    public override bool Exist(Point p)
-    {
-        var R = new Rectangle(0,0, Size-1, Size-1);
-        return R.Contains(p);
     }
 
     public override Point Next(Point p, Direction d)
     {
-        var newPoint = p.Next(d);
-        if (Exist(newPoint))
-        {
-            return newPoint;
-        }
-        else
-        {
-            return p;
-        }
+        Point nextPoint = p.Next(d);
+        return Exist(nextPoint) ? nextPoint : p;
     }
 
     public override Point NextDiagonal(Point p, Direction d)
     {
-        var newPoint = p.NextDiagonal(d);
-        if (Exist(newPoint))
-        {
-            return newPoint;
-        }
-        else
-        {
-            return p;
-        }
+        Point nextPoint = p.NextDiagonal(d);
+        return Exist(nextPoint) ? nextPoint : p;
     }
 }

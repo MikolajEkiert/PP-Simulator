@@ -11,6 +11,8 @@ public class Simulation
     /// IMappables moving on the map.
     /// </summary>
     public List<IMappable> IMappables { get; }
+    public IMappable CurrentCreature => IMappables[_currentMoveIndex % IMappables.Count];
+
 
     /// <summary>
     /// Starting positions of mappables.

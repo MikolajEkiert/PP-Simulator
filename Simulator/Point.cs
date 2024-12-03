@@ -33,29 +33,16 @@ public readonly struct Point
 
     // rotate given direction 45 degrees clockwise
     public Point NextDiagonal(Direction direction)
-    {
-        switch (direction)
-        {
-            
-            case Direction.Left:
+    { 
+        return direction switch
             {
-                return new Point(X-1, Y+1);
-            }
-            case Direction.Down:
-            {
-                return new Point(X-1, Y-1);
-            }
-            case Direction.Up:
-            {
-                return new Point(X+1, Y+1);
-            }
-            case Direction.Right:
-            {
-                return new Point(X+1, Y-1);
-            }
-            default:
-                return default;    
-            
-        }
+                Direction.Up => new Point(X + 1, Y + 1),
+                Direction.Right => new Point(X + 1, Y - 1),
+                Direction.Down => new Point(X - 1, Y - 1),
+                Direction.Left => new Point(X - 1, Y + 1),  
+                
+                _ => default,
+            };
+        
     }
 }
