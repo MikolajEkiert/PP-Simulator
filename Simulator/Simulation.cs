@@ -1,120 +1,71 @@
 using Simulator.Maps;
-namespace Simulator;
-public class Simulation
+using Simulator;
+using System;
+using System.Collections.Generic;
+
+namespace Simulator
 {
-    /// <summary>
-    /// Simulation's map.
-    /// </summary>
-    public Map Map { get; }
-
-    /// <summary>
-    /// IMappables moving on the map.
-    /// </summary>
-    public List<IMappable> IMappables { get; }
-    public IMappable CurrentCreature => IMappables[_currentMoveIndex % IMappables.Count];
-
-
-    /// <summary>
-    /// Starting positions of mappables.
-    /// </summary>
-    public List<Point> Positions { get; }
-
-    /// <summary>
-    /// Cyclic list of mappables moves. 
-    /// Bad moves are ignored - use DirectionParser.
-    /// First move is for first mappable, second for second and so on.
-    /// When all mappables make moves, 
-    /// next move is again for first mappable and so on.
-    /// </summary>
-    public string Moves { get; private set; }
-
-    /// <summary>
-    /// Have all moves been done?
-    /// </summary>
-    public bool Finished { get; private set; } = false;
-
-    private int _currentMoveIndex = 0;
-
-    /// <summary>
-    /// IMappable which will be moving current turn.
-    /// </summary>
-    public IMappable CurrentMappable => IMappables[_currentMoveIndex % IMappables.Count];
-
-    /// <summary>
-    /// Lowercase name of direction which will be used in current turn.
-    /// </summary>
-    public string CurrentMoveName => Moves[_currentMoveIndex].ToString().ToLower();
-
-    /// <summary>
-    /// Simulation constructor.
-    /// Throw errors:
-    /// if mappables' list is empty,
-    /// if number of mappables differs from 
-    /// number of starting positions.
-    /// </summary>
-    public Simulation(Map map, List<IMappable> mappables,
-        List<Point> positions, string moves)
+    public class Simulation
     {
-        if (mappables == null || mappables.Count == 0)
+        public Map Map { get; }
+        public List<IMappable> IMappables { get; }
+        public List<Point> Positions { get; }
+        public string Moves { get; private set; }
+        public bool Finished { get; private set; } = false;
+        public IMappable CurrentMappable => IMappables[turn % IMappables.Count];
+        public string CurrentMoveName => directions[turn % directions.Count].ToString().ToLower();
+
+        private readonly List<Direction> directions;
+        private int turn = 0;
+
+        public Simulation(Map map, List<IMappable> mappables, List<Point> positions, string moves)
         {
-            throw new ArgumentException("List of mappables cannot be empty.");
+            Map = map;
+            IMappables = mappables;
+            Positions = positions;
+            Moves = moves;
+            directions = DirectionParser.Parse(moves);
+
+            for (int i = 0; i < mappables.Count; i++)
+            {
+                var mappable = mappables[i];
+                var position = positions[i];
+
+                if (!map.Exist(position))
+                    throw new ArgumentException($"Position {position} is outside the bounds of the map.");
+
+                mappable.initMapAndPosition(map, position);
+            }
         }
 
-        if (mappables.Count != positions.Count)
+        public void Turn()
         {
-            throw new ArgumentException("Number of mappables must match the number of starting positions.");
-        }
+            if (Finished)
+                throw new InvalidOperationException("The simulation is already finished.");
 
-        Map = map ?? throw new ArgumentNullException(nameof(map));
-        IMappables = mappables;
-        Positions = positions;
-        Moves = moves ?? throw new ArgumentNullException(nameof(moves));
+            if (directions.Count == 0)
+            {
+                Finished = true;
+                return;
+            }
 
-        for (int i = 0; i < mappables.Count; i++)
-        {
-            var mappable = mappables[i];
-            var position = positions[i];
-            
-            mappable.initMapAndPosition(map, position);
-            map.Add(mappable, position);
+            var direction = directions[turn % directions.Count];
 
+            try
+            {
+                CurrentMappable.Go(direction);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error moving mappable: {ex.Message}");
+            }
+
+            turn++;
+
+            if (turn >= directions.Count)
+            {
+                Finished = true;
+            }
         }
     }
-    /// <summary>
-    /// Makes one move of current mappable in current direction.
-    /// Throw error if simulation is finished.
-    /// </summary>
-    public void Turn()
-    {
-        if (Finished)
-        {
-            throw new InvalidOperationException("The simulation is already finished.");
-        }
-
-        if (Moves.Length == 0)
-        {
-            Finished = true;
-            return;
-        }
-
-        char currentMoveChar = Moves[_currentMoveIndex];
-        var directions = DirectionParser.Parse(currentMoveChar.ToString());
-
-        if (directions != null && directions.Count > 0)
-        {
-            var direction = directions[0];
-            CurrentMappable.Go(direction);
-        }
-
-        // Advance to the next creature and move
-        _currentMoveIndex++;
-
-        // Check if all moves are done
-        if (_currentMoveIndex >= Moves.Length)
-        {
-            Finished = true;
-        }
-    }
-
-
 }

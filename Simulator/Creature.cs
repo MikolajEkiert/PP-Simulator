@@ -2,17 +2,17 @@ using Simulator.Maps;
 
 namespace Simulator
 {
-    public abstract class Creature: IMappable
+    public abstract class Creature : IMappable
     {
-        public Map? Map { get; private set; }
-        public Point Position { get; private set; }
+        public Map? Map { get; set; }
+        public Point Position { get; set; }
 
         public void initMapAndPosition(Map map, Point position)
         {
             Map = map;
             Position = position;
         }
-        
+
         private string name = "Unknown";
         public string Name
         {
@@ -30,7 +30,7 @@ namespace Simulator
                 }
                 if (!char.IsUpper(trimmed[0]))
                 {
-                    trimmed = char.ToUpper(trimmed[0]) + trimmed.Substring(1); 
+                    trimmed = char.ToUpper(trimmed[0]) + trimmed.Substring(1);
                 }
                 trimmed = trimmed.Trim();
                 if (trimmed.Length < 3)
@@ -67,9 +67,9 @@ namespace Simulator
             Name = name;
             Level = level;
         }
-        
+
         public abstract string Greetings();
-       
+
         public void Upgrade()
         {
             if (Level < 10)
@@ -81,7 +81,7 @@ namespace Simulator
         public void Go(Direction direction)
         {
             if (Map == null)
-                return; 
+                return;
 
             Point nextPosition = Map.Next(Position, direction);
             Map.Move(this, Position, nextPosition);
@@ -91,8 +91,8 @@ namespace Simulator
         public abstract int Power { get; }
 
         public abstract string Info { get; }
-        
-        public abstract char Symbol { get; } 
+
+        public abstract char Symbol { get; }
 
         public override string ToString()
         {

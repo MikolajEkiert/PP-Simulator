@@ -4,7 +4,7 @@ namespace Simulator;
 
 public class Animals : IMappable
 {
-    public Map? Map { get; private set; }
+    public Map? Map { get; set; }
     public Point Position { get; set; }
     private string description = "Unknown";
 
@@ -36,7 +36,7 @@ public class Animals : IMappable
         Position = nextPosition;
     }
 
-    public void initMapAndPosition(Map map, Point position)
+    public void InitMapAndPosition(Map map, Point position)
     {
         Map = map;
         Position = position;
