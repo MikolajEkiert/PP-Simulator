@@ -37,13 +37,13 @@ public abstract class Map
     /// <returns>Next point.</returns>
     public abstract Point NextDiagonal(Point p, Direction d);
 
-    public void Add(IMappable mappable, Point point)
+    public virtual void Add(IMappable mappable, Point point)
     {
         Fields[point.X, point.Y] ??= new List<IMappable>();
         Fields[point.X, point.Y]?.Add(mappable);
     }
 
-    public void Remove(IMappable mappable, Point point)
+    public virtual void Remove(IMappable mappable, Point point)
     {
         if (Fields[point.X, point.Y] != null)
         {
@@ -58,7 +58,7 @@ public abstract class Map
         Add(mappable, to);
     }
 
-    public List<IMappable> At(Point point)
+    public virtual List<IMappable> At(Point point)
     {
         return Fields[point.X, point.Y] ?? new List<IMappable>();
     }
