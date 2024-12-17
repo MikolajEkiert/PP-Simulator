@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
 namespace Simulator.Maps;
 
 public interface IMappable
 {
     Map? Map { get; set; }
     Point Position { get; set; }
-    abstract char Symbol { get; }
+    public char Symbol { get; }
     string Info { get; }
+    public string ToString();  
     virtual void Go(Direction direction)
     {
         if (Map == null)
