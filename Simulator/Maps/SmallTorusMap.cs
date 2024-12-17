@@ -9,7 +9,6 @@ public class SmallTorusMap : Map
         fields = new List<IMappable>?[sizeX, sizeY];
     }
 
-    protected override List<IMappable>?[,] Fields => fields;
 
     public override bool Exist(Point p)
     {

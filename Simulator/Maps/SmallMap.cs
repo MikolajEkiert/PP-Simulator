@@ -3,7 +3,7 @@ namespace Simulator.Maps;
 public abstract class SmallMap : Map
 {
 
-    private readonly List<IMappable>? [,] _fields;
+    public readonly List<IMappable>? [,] _fields;
     protected SmallMap(int sizeX, int sizeY) : base(sizeX, sizeY)
     {
         if (sizeX > 20) throw new ArgumentOutOfRangeException(nameof(sizeX), "Szerokość mapy musi wynosić maksymalnie 20.");
@@ -11,5 +11,4 @@ public abstract class SmallMap : Map
 
         _fields = new List<IMappable>?[sizeX, sizeY];
     }
-    protected override List<IMappable>?[,] Fields => _fields;
 }
